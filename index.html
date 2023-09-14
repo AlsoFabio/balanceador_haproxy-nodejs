@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejecutar comandos desde el navegador</title>
+</head>
+<body>
+  <h1>Ejecutar comandos desde el navegador</h1>
+  <form id="comandoCrear">
+    <!-- <input type="text" id="comando" placeholder="Ingrese un comando"> -->
+    <button type="submit">+</button>
+  </form>
+  <form id="comandoBorrar">
+    <!-- <input type="text" id="comando" placeholder="Ingrese un comando"> -->
+    <button type="submit">-</button>
+  </form>
+  <div id="resultado"></div>
+
+  <script>
+    document.getElementById('comandoCrear').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // const comando = document.getElementById('comando').value;
+      const response = await fetch('http://localhost:3000/ejecutar-crear');
+
+      const data = await response.text();
+      document.getElementById('resultado').textContent = data;
+    });
+    document.getElementById('comandoBorrar').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // const comando = document.getElementById('comando').value;
+      const response = await fetch('http://localhost:3000/ejecutar-borrar');
+
+      const data = await response.text();
+      document.getElementById('resultado').textContent = data;
+    });
+  </script>
+</body>
+</html>

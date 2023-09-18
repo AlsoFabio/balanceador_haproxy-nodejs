@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Ejecutar comandos desde el navegador</title>
 </head>
+
 <body>
   <h1>Ejecutar comandos desde el navegador</h1>
   <form id="comandoCrear">
@@ -13,7 +15,7 @@
     <!-- <input type="text" id="comando" placeholder="Ingrese un comando"> -->
     <button type="submit">-</button>
   </form>
-  <div id="resultado"></div>
+    <button type="button" id="botonRedireccion">Probar balanceador</button>
 
   <script>
     document.getElementById('comandoCrear').addEventListener('submit', async (e) => {
@@ -32,6 +34,10 @@
       const data = await response.text();
       document.getElementById('resultado').textContent = data;
     });
+    document.getElementById("botonRedireccion").addEventListener("click", function () {
+      window.open("http://localhost:8085", "_blank");
+    });
   </script>
 </body>
+
 </html>

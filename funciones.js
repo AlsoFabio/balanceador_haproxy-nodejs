@@ -45,13 +45,14 @@ const funciones = {
         }
         // Crear un nuevo contenedor con el nombre "web" + el número faltante
         const newContainerName = `web${missingNumber}`;
-        console.log(`Creando un nuevo contenedor con el nombre: ${newContainerName}`);
+        console.log(`Creando un nuevo contenedor con el nombre: ${newContainerName}.${missingNumber}`);
 
         const mysqlHost = 'mysql-1'; // Cambia esto a la dirección correcta del host MySQL
         const mysqlRootPassword = '1234'; // Cambia esto a la contraseña correcta
 
         // Ejecutar el comando de Docker para crear el nuevo contenedor
         execSync(`docker run -d -e MYSQL_HOST=${mysqlHost} -e MYSQL_ROOT_PASSWORD=${mysqlRootPassword} --name ${newContainerName} apachito`);
+        
         return newContainerName
     },
     // Función para eliminar un contenedor con un número aleatorio
@@ -134,6 +135,7 @@ backend http_back
         fs.writeFileSync(filePath, yamlContent);
 
         console.log(`Balanceador reescrito con éxito.`);
+        execSync(`docker restart haproxyFan`)
     },
 }
 
